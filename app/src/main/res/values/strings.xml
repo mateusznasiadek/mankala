@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Mankala</string>
+    <string name="play">Graj</string>
+
+    <string name="player1">Gracz 1</string>
+    <string name="player2">Gracz 2</string>
+
+    <string name="player_type">Typ gracza</string>
+    <string name="human">Człowiek</string>
+    <string name="min_max_alg">Algorytm min-max</string>
+    <string name="alpha_beta_alg">Algorytm alpha-beta cięć</string>
+
+
+    <string name="total_time">Łączny czas: %1$s s</string>
+    <string name="last_time">Czas ostatniej tury: %1$s s</string>
+    <string name="moves">Ilość ruchów: %1$d</string>
+</resources>

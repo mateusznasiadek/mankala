@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.mankala.GameViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <TextView
+            android:id="@+id/player1Well"
+            android:layout_width="@dimen/well_size"
+            android:layout_height="@dimen/well_size"
+            android:layout_margin="20dp"
+            android:background="@drawable/rectangle"
+            android:gravity="center"
+            android:text="@{viewModel.bins[6].toString()}"
+            android:textColor="@color/black"
+            android:textSize="26sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="0" />
+
+        <TextView
+            android:id="@+id/player1Bin1"
+            android:layout_width="@dimen/bin_size"
+            android:layout_height="@dimen/bin_size"
+            android:layout_marginBottom="@dimen/bin_margin_bottom"
+            android:background="@drawable/rectangle"
+            android:gravity="center"
+            android:text="@{viewModel.bins[0].toString()}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/bin_font_size"
+            app:layout_constraintBottom_toTopOf="@id/player1Well"
+            app:layout_constraintEnd_toStartOf="@id/player2Well"
+            app:layout_constraintStart_toEndOf="@id/player1Bin2"
+            tools:text="4" />
+
+        <TextView
+            android:id="@+id/player1Bin2"
+            android:layout_width="@dimen/bin_size"
+            android:layout_height="@dimen/bin_size"
+            android:layout_marginBottom="@dimen/bin_margin_bottom"
+            android:background="@drawable/rectangle"
+            android:gravity="center"
+            android:text="@{viewModel.bins[1].toString()}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/bin_font_size"
+            app:layout_constraintBottom_toTopOf="@id/player1Well"
+            app:layout_constraintEnd_toStartOf="@id/player1Bin1"
+            app:layout_constraintStart_toEndOf="@id/player1Bin3"
+            tools:text="4" />
+
+        <TextView
+            android:id="@+id/player1Bin3"
+            android:layout_width="@dimen/bin_size"
+            android:layout_height="@dimen/bin_size"
+            android:layout_marginBottom="@dimen/bin_margin_bottom"
+            android:background="@drawable/rectangle"
+            android:gravity="center"
+            android:text="@{viewModel.bins[2].toString()}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/bin_font_size"
+            app:layout_constraintBottom_toTopOf="@id/player1Well"
+            app:layout_constraintEnd_toStartOf="@id/player1Bin2"
+            app:layout_constraintStart_toEndOf="@id/player1Bin4"
+            tools:text="4" />
+
+        <TextView
+            android:id="@+id/player1Bin4"
+            android:layout_width="@dimen/bin_size"
+            android:layout_height="@dimen/bin_size"
+            android:layout_marginBottom="@dimen/bin_margin_bottom"
+            android:background="@drawable/rectangle"
+            android:gravity="center"
+            android:text="@{viewModel.bins[3].toString()}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/bin_font_size"
+            app:layout_constraintBottom_toTopOf="@id/player1Well"
+            app:layout_constraintEnd_toStartOf="@id/player1Bin3"
+            app:layout_constraintStart_toEndOf="@id/player1Bin5"
+            tools:text="4" />
+
+        <TextView
+            android:id="@+id/player1Bin5"
+            android:layout_width="@dimen/bin_size"
+            android:layout_height="@dimen/bin_size"
+            android:layout_marginBottom="@dimen/bin_margin_bottom"
+            android:background="@drawable/rectangle"
+            android:gravity="center"
+            android:text="@{viewModel.bins[4].toString()}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/bin_font_size"
+            app:layout_constraintBottom_toTopOf="@id/player1Well"
+            app:layout_constraintEnd_toStartOf="@id/player1Bin4"
+            app:layout_constraintStart_toEndOf="@id/player1Bin6"
+            tools:text="4" />
+
+        <TextView
+            android:id="@+id/player1Bin6"
+            android:layout_width="@dimen/bin_size"
+            android:layout_height="@dimen/bin_size"
+            android:layout_marginBottom="@dimen/bin_margin_bottom"
+            android:background="@drawable/rectangle"
+            android:gravity="center"
+            android:text="@{viewModel.bins[5].toString()}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/bin_font_size"
+            app:layout_constraintBottom_toTopOf="@id/player1Well"
+            app:layout_constraintEnd_toStartOf="@id/player1Bin5"
+            app:layout_constraintStart_toEndOf="@id/player1Well"
+            tools:text="4" />
+
+        <TextView
+            android:id="@+id/player2Bin6"
+            android:layout_width="@dimen/bin_size"
+            android:layout_height="@dimen/bin_size"
+            android:layout_marginBottom="@dimen/bin_margin_bottom"
+            android:background="@drawable/rectangle"
+            android:gravity="center"
+            android:text="@{viewModel.bins[12].toString()}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/bin_font_size"
+            app:layout_constraintEnd_toStartOf="@id/player2Well"
+            app:layout_constraintStart_toEndOf="@id/player2Bin5"
+            app:layout_constraintTop_toBottomOf="@id/player1Well"
+            tools:text="4" />
+
+        <TextView
+            android:id="@+id/player2Bin5"
+            android:layout_width="@dimen/bin_size"
+            android:layout_height="@dimen/bin_size"
+            android:layout_marginBottom="@dimen/bin_margin_bottom"
+            android:background="@drawable/rectangle"
+            android:gravity="center"
+            android:text="@{viewModel.bins[11].toString()}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/bin_font_size"
+            app:layout_constraintEnd_toStartOf="@id/player2Bin6"
+            app:layout_constraintStart_toEndOf="@id/player2Bin4"
+            app:layout_constraintTop_toBottomOf="@id/player1Well"
+            tools:text="4" />
+
+        <TextView
+            android:id="@+id/player2Bin4"
+            android:layout_width="@dimen/bin_size"
+            android:layout_height="@dimen/bin_size"
+            android:layout_marginBottom="@dimen/bin_margin_bottom"
+            android:background="@drawable/rectangle"
+            android:gravity="center"
+            android:text="@{viewModel.bins[10].toString()}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/bin_font_size"
+            app:layout_constraintEnd_toStartOf="@id/player2Bin5"
+            app:layout_constraintStart_toEndOf="@id/player2Bin3"
+            app:layout_constraintTop_toBottomOf="@id/player1Well"
+            tools:text="4" />
+
+        <TextView
+            android:id="@+id/player2Bin3"
+            android:layout_width="@dimen/bin_size"
+            android:layout_height="@dimen/bin_size"
+            android:background="@drawable/rectangle"
+            android:gravity="center"
+            android:text="@{viewModel.bins[9].toString()}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/bin_font_size"
+            app:layout_constraintEnd_toStartOf="@id/player2Bin4"
+            app:layout_constraintStart_toEndOf="@id/player2Bin2"
+            app:layout_constraintTop_toBottomOf="@id/player1Well"
+            tools:text="4" />
+
+        <TextView
+            android:id="@+id/player2Bin2"
+            android:layout_width="@dimen/bin_size"
+            android:layout_height="@dimen/bin_size"
+            android:layout_marginBottom="@dimen/bin_margin_bottom"
+            android:background="@drawable/rectangle"
+            android:gravity="center"
+            android:text="@{viewModel.bins[8].toString()}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/bin_font_size"
+            app:layout_constraintEnd_toStartOf="@id/player2Bin3"
+            app:layout_constraintStart_toEndOf="@id/player2Bin1"
+            app:layout_constraintTop_toBottomOf="@id/player1Well"
+            tools:text="4" />
+
+        <TextView
+            android:id="@+id/player2Bin1"
+            android:layout_width="@dimen/bin_size"
+            android:layout_height="@dimen/bin_size"
+            android:layout_marginBottom="@dimen/bin_margin_bottom"
+            android:background="@drawable/rectangle"
+            android:gravity="center"
+            android:text="@{viewModel.bins[7].toString()}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/bin_font_size"
+            app:layout_constraintEnd_toStartOf="@id/player2Bin2"
+            app:layout_constraintStart_toEndOf="@id/player1Well"
+            app:layout_constraintTop_toBottomOf="@id/player1Well"
+            tools:text="4" />
+
+        <TextView
+            android:id="@+id/player2Well"
+            android:layout_width="@dimen/well_size"
+            android:layout_height="@dimen/well_size"
+            android:layout_margin="20dp"
+            android:background="@drawable/rectangle"
+            android:gravity="center"
+            android:text="@{viewModel.bins[13].toString()}"
+            android:textColor="@color/black"
+            android:textSize="26sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="0" />
+
+        <TextView
+            android:id="@+id/player1GameTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/bin_margin_bottom"
+            android:text="@string/player1"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toTopOf="@+id/player1Bin3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/player1LastTimeTV" />
+
+        <TextView
+            android:id="@+id/player1TimeTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@id/player1GameTV"
+            app:layout_constraintEnd_toStartOf="@id/player1LastTimeTV"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/total_time" />
+
+        <TextView
+            android:id="@+id/player1LastTimeTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/player1GameTV"
+            app:layout_constraintEnd_toStartOf="@id/player1MovesTV"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@id/player1TimeTV"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/player1MovesTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{@string/moves(viewModel.playerOne.turns)}"
+            app:layout_constraintBottom_toTopOf="@id/player1GameTV"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/player1LastTimeTV"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/player2GameTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/bin_margin_bottom"
+            android:text="@string/player2"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toTopOf="@+id/player2LastTimeTV"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/player2Bin4" />
+
+        <TextView
+            android:id="@+id/player2TimeTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/player2LastTimeTV"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/player2GameTV"
+            tools:text="@string/total_time" />
+
+        <TextView
+            android:id="@+id/player2LastTimeTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/player2MovesTV"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@id/player2TimeTV"
+            app:layout_constraintTop_toBottomOf="@+id/player2GameTV" />
+
+        <TextView
+            android:id="@+id/player2MovesTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{@string/moves(viewModel.playerTwo.turns)}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/player2LastTimeTV"
+            app:layout_constraintTop_toBottomOf="@id/player2GameTV" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

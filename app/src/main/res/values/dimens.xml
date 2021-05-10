@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="bin_size">50dp</dimen>
+    <dimen name="bin_font_size">20sp</dimen>
+    <dimen name="well_size">80dp</dimen>
+    <dimen name="bin_margin_bottom">10dp</dimen>
+</resources>
