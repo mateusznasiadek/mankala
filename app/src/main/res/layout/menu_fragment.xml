@@ -113,7 +113,8 @@
             app:layout_constraintBottom_toBottomOf="@id/player1MinMaxSlider"
             app:layout_constraintEnd_toStartOf="@id/player1MinMaxSlider"
             app:layout_constraintTop_toTopOf="@id/player1MinMaxSlider"
-            tools:text="5" />
+            tools:text="5"
+            tools:visibility="visible"/>
 
         <com.google.android.material.slider.Slider
             android:id="@+id/player1MinMaxSlider"
@@ -136,7 +137,8 @@
             app:trackColorActive="@color/purple_500"
             app:trackColorInactive="@color/purple_200"
             app:trackHeight="10dp"
-            tools:value="5" />
+            tools:value="5"
+            tools:visibility="visible"/>
 
         <TextView
             android:id="@+id/player2MinMaxTV"
@@ -149,7 +151,8 @@
             app:layout_constraintBottom_toBottomOf="@id/player2MinMaxSlider"
             app:layout_constraintEnd_toStartOf="@id/player2MinMaxSlider"
             app:layout_constraintTop_toTopOf="@id/player2MinMaxSlider"
-            tools:text="5" />
+            tools:text="5"
+            tools:visibility="visible"/>
 
         <com.google.android.material.slider.Slider
             android:id="@+id/player2MinMaxSlider"
@@ -172,7 +175,33 @@
             app:trackColorActive="@color/purple_500"
             app:trackColorInactive="@color/purple_200"
             app:trackHeight="10dp"
-            tools:value="5" />
+            tools:value="5"
+            tools:visibility="visible"/>
+
+        <CheckBox
+            android:id="@+id/playerOneFirstRandomMoveCB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/first_random_move"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toEndOf="@+id/player1MinMaxSlider"
+            app:layout_constraintStart_toStartOf="@+id/player1MinMaxSlider"
+            app:layout_constraintTop_toBottomOf="@+id/player1MinMaxSlider"
+            android:visibility="gone"
+            tools:visibility="visible"
+            />
+
+        <CheckBox
+            android:id="@+id/playerTwoFirstRandomMoveCB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/first_random_move"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toEndOf="@+id/player2MinMaxSlider"
+            app:layout_constraintStart_toStartOf="@+id/player2MinMaxSlider"
+            app:layout_constraintTop_toBottomOf="@+id/player2MinMaxSlider"
+            android:visibility="gone"
+            tools:visibility="visible"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

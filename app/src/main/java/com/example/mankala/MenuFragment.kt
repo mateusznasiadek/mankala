@@ -52,7 +52,9 @@ class MenuFragment : Fragment() {
             viewModel.playerOneType.value!!,
             viewModel.playerTwoType.value!!,
             viewModel.playerOneMinMaxValue.value!!,
-            viewModel.playerTwoMinMaxValue.value!!
+            viewModel.playerTwoMinMaxValue.value!!,
+            viewModel.playerOneFirstRandomMove,
+            viewModel.playerTwoFirstRandomMove
         )
         NavHostFragment.findNavController(this).navigate(action)
     }
@@ -60,11 +62,15 @@ class MenuFragment : Fragment() {
 
     private fun setMenus() {
         val items =
-            listOf(resources.getString(R.string.human), resources.getString(R.string.min_max_alg))
+            listOf(
+                resources.getString(R.string.human),
+                resources.getString(R.string.min_max_alg),
+                resources.getString(R.string.alpha_beta_alg)
+            )
         val adapter = ArrayAdapter(requireContext(), R.layout.details_menu_item, items)
 
         (binding.player1Menu.editText as? AutoCompleteTextView)?.setAdapter(adapter)
-        binding.player1AUTV.setOnItemClickListener { adapterView: AdapterView<*>, view1: View, i: Int, l: Long ->
+        binding.player1AUTV.setOnItemClickListener { _: AdapterView<*>, _: View, _: Int, _: Long ->
             viewModel.playerOneType.value = binding.player1AUTV.text.toString()
         }
 
@@ -83,6 +89,14 @@ class MenuFragment : Fragment() {
             Slider.OnChangeListener { _, value, _ ->
                 viewModel.playerTwoMinMaxValue.value = value.toInt()
             })
+
+        binding.playerOneFirstRandomMoveCB.setOnClickListener {
+            viewModel.playerOneFirstRandomMove = binding.playerOneFirstRandomMoveCB.isChecked
+        }
+
+        binding.playerTwoFirstRandomMoveCB.setOnClickListener {
+            viewModel.playerTwoFirstRandomMove = binding.playerOneFirstRandomMoveCB.isChecked
+        }
     }
 
     private fun setObservers() {
@@ -90,27 +104,37 @@ class MenuFragment : Fragment() {
             if (it == resources.getString(R.string.human)) {
                 binding.player1MinMaxSlider.visibility = View.GONE
                 binding.player1MinMaxTV.visibility = View.GONE
-            } else if (it == resources.getString(R.string.min_max_alg)) {
+                binding.playerOneFirstRandomMoveCB.visibility = View.GONE
+            } else if (it == resources.getString(R.string.min_max_alg) || it == resources.getString(
+                    R.string.alpha_beta_alg
+                )
+            ) {
                 binding.player1MinMaxSlider.visibility = View.VISIBLE
                 binding.player1MinMaxTV.visibility = View.VISIBLE
+                binding.playerOneFirstRandomMoveCB.visibility = View.VISIBLE
             }
         })
         viewModel.playerTwoType.observe(viewLifecycleOwner, {
             if (it == resources.getString(R.string.human)) {
                 binding.player2MinMaxSlider.visibility = View.GONE
                 binding.player2MinMaxTV.visibility = View.GONE
-            } else if (it == resources.getString(R.string.min_max_alg)) {
+                binding.playerTwoFirstRandomMoveCB.visibility = View.GONE
+            } else if (it == resources.getString(R.string.min_max_alg) || it == resources.getString(
+                    R.string.alpha_beta_alg
+                )
+            ) {
                 binding.player2MinMaxSlider.visibility = View.VISIBLE
                 binding.player2MinMaxTV.visibility = View.VISIBLE
+                binding.playerTwoFirstRandomMoveCB.visibility = View.VISIBLE
             }
         })
 
         viewModel.playerOneMinMaxValue.observe(viewLifecycleOwner, {
-                binding.player1MinMaxTV.text = viewModel.playerOneMinMaxValue.value.toString()
+            binding.player1MinMaxTV.text = viewModel.playerOneMinMaxValue.value.toString()
         })
 
         viewModel.playerTwoMinMaxValue.observe(viewLifecycleOwner, {
-                binding.player2MinMaxTV.text = viewModel.playerTwoMinMaxValue.value.toString()
+            binding.player2MinMaxTV.text = viewModel.playerTwoMinMaxValue.value.toString()
         })
     }
 

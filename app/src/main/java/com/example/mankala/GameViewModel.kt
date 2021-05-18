@@ -2,61 +2,74 @@ package com.example.mankala
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.mankala.player.AlphaBetaPlayer
+import com.example.mankala.player.MinMaxPlayer
+import com.example.mankala.player.Player
+import com.example.mankala.player.notifyObserver
 
 class GameViewModel(
-    playerOneType: String,
-    playerTwoType: String,
-    val playerOneMinMaxValue: Int,
-    val playerTwoMinMaxValue: Int
+    val playerOneType: String,
+    val playerTwoType: String,
+    playerOneMinMaxValue: Int,
+    playerTwoMinMaxValue: Int,
+    isPlayerOneFirstMoveRandom: Boolean = false,
+    isPlayerTwoFirstMoveRandom: Boolean = false
 ) : ViewModel() {
-
-    private val _playerOne = MutableLiveData<Player>()
-    val playerOne: MutableLiveData<Player>
-        get() = _playerOne
-
-    private val _playerTwo = MutableLiveData<Player>()
-    val playerTwo: MutableLiveData<Player>
-        get() = _playerTwo
 
     private val _bins = MutableLiveData<ArrayList<Int>>()
     val bins: MutableLiveData<ArrayList<Int>>
         get() = _bins
 
-    private val _playerOneTurn = MutableLiveData<Boolean>()
-    val playerOneTurn: MutableLiveData<Boolean>
-        get() = _playerOneTurn
-
-    var playing = true
-
+    private var playing = true
     var chosenBin = -8
-    var lastRecipient = -1
+    private var lastRecipient = -1
+    var gameOver = MutableLiveData<Boolean>()
+
+    var playerOne = Player(true)
+    var playerTwo = Player(false)
+
+    val playerOneTurn = MutableLiveData<Boolean>()
 
     init {
         _bins.value = arrayListOf(4, 4, 4, 4, 4, 4, 0, 4, 4, 4, 4, 4, 4, 0)
-        _playerOneTurn.value = true
-        _playerOne.value = Player(playerOneType)
-        _playerTwo.value = Player(playerTwoType)
+
+        if (playerOneType == "Algorytm min-max")
+            playerOne = MinMaxPlayer(true, playerOneMinMaxValue, isPlayerOneFirstMoveRandom)
+        else if (playerOneType == "Algorytm alpha-beta cięć")
+            playerOne = AlphaBetaPlayer(true, playerOneMinMaxValue, isPlayerOneFirstMoveRandom)
+
+        if (playerTwoType == "Algorytm min-max")
+            playerTwo = MinMaxPlayer(false, playerTwoMinMaxValue,isPlayerTwoFirstMoveRandom)
+        else if (playerTwoType == "Algorytm alpha-beta cięć")
+            playerTwo = AlphaBetaPlayer(false, playerTwoMinMaxValue, isPlayerTwoFirstMoveRandom)
+
+        gameOver.value = false
+        playerOneTurn.value = true
     }
 
     fun game() {
 
-//        if (_playerOneTurn.value!! && chosenBin > 5)
+//        if (playerOne.myTurn.value!! && chosenBin > 5)
 //            return
-//        else if (!_playerOneTurn.value!! && chosenBin < 7)
+//        else if (playerTwo.myTurn.value!! && chosenBin < 7)
 //            return
+        if (playerOneTurn.value!! && chosenBin > 5)
+            return
+        else if (!playerOneTurn.value!! && chosenBin < 7)
+            return
+        else if (chosenBin < 0)
+            return
 
         distributeStones()
         countTurn()
         setTurn(lastRecipient)
-        lastRecipient = -1
-        checkIfEnd()
     }
 
     private fun countTurn() {
-        if (_playerOneTurn.value!!)
-            _playerOne.value!!.turns += 1
+        if (playerOneTurn.value!!)
+            playerOne.moves.value = playerOne.moves.value!!.plus(1)
         else
-            _playerTwo.value!!.turns += 1
+            playerTwo.moves.value = playerTwo.moves.value!!.plus(1)
     }
 
     private fun distributeStones() {
@@ -65,13 +78,13 @@ class GameViewModel(
         var recipient = chosenBin + 1
 
         while (giveawayPile > 0) {
-            if (_playerOneTurn.value!! && recipient == 13)
+            if (playerOneTurn.value!! && recipient == 13)
                 recipient = 0
-            else if (!_playerOneTurn.value!! && recipient == 6)
+            else if (!playerOneTurn.value!! && recipient == 6)
                 recipient = 7
 
             _bins.value!![recipient] = _bins.value!![recipient].plus(1)
-            _bins.value = _bins.value
+            _bins.notifyObserver()
 
             giveawayPile -= 1
 
@@ -86,24 +99,61 @@ class GameViewModel(
     }
 
     private fun setTurn(lastRecipient: Int) {
-        if (_playerOneTurn.value!! && _bins.value!![lastRecipient] == 1 && lastRecipient < 6 && _bins.value!![12 - lastRecipient] > 0) {
+        if (playerOneTurn.value!! && _bins.value!![lastRecipient] == 1 && lastRecipient < 6 && _bins.value!![12 - lastRecipient] > 0) {
             _bins.value!![6] += _bins.value!![lastRecipient] + _bins.value!![12 - lastRecipient]
             _bins.value!![lastRecipient] = 0
             _bins.value!![12 - lastRecipient] = 0
 
+
             _bins.value = _bins.value
 
-            _playerOneTurn.value = false
-        } else if (!_playerOneTurn.value!! && _bins.value!![lastRecipient] == 1 && 6 < lastRecipient && lastRecipient < 13 && _bins.value!![12 - lastRecipient] > 0) {
+            this.lastRecipient = -1
+            checkIfEnd()
+            if (playing) {
+                playerOneTurn.value = false
+//                playerTwo.myTurn.value = true
+            }
+
+        } else if (!playerOneTurn.value!! && _bins.value!![lastRecipient] == 1 && 6 < lastRecipient && lastRecipient < 13 && _bins.value!![12 - lastRecipient] > 0) {
             _bins.value!![13] += _bins.value!![lastRecipient] + _bins.value!![12 - lastRecipient]
             _bins.value!![lastRecipient] = 0
             _bins.value!![12 - lastRecipient] = 0
 
             _bins.value = _bins.value
 
-            _playerOneTurn.value = true
+            this.lastRecipient = -1
+            checkIfEnd()
+
+            if (playing) {
+//                playerTwo.myTurn.value = false
+                playerOneTurn.value = true
+            }
         } else if (lastRecipient != 6 && lastRecipient != 13) {
-            _playerOneTurn.value = !_playerOneTurn.value!!
+            this.lastRecipient = -1
+            checkIfEnd()
+
+            if (playing) {
+                playerOneTurn.value = !playerOneTurn.value!!
+//                if (playerOneTurn.value!!) {
+//                    playerOne.myTurn.value = !playerOne.myTurn.value!!
+//                    playerTwo.myTurn.value = !playerTwo.myTurn.value!!
+//                } else {
+//                    playerTwo.myTurn.value = !playerTwo.myTurn.value!!
+//                    playerOne.myTurn.value = !playerOne.myTurn.value!!
+//                }
+
+            }
+        } else {
+            this.lastRecipient = -1
+            checkIfEnd()
+
+            if (playing) {
+//                if (!playerOneTurn.value!!)
+                    playerOneTurn.notifyObserver()
+//                } else {
+//                    playerOne.myTurn.notifyObserver()
+//                }
+            }
         }
 
     }
@@ -130,14 +180,7 @@ class GameViewModel(
                 i += 1
             }
             _bins.value = _bins.value
+            gameOver.value = true
         }
-//        if (playerOne.value?.bins?.sum() == 0 || playerTwo.value?.bins?.sum() == 0) {
-//            playing = false
-//            playerOne.value?.well = playerOne.value?.well?.plus(playerOne.value?.bins?.sum()!!)!!
-//            playerTwo.value?.well = playerTwo.value?.well?.plus(playerTwo.value?.bins?.sum()!!)!!
-//
-//            playerOne.value?.bins?.replaceAll { 0 }
-//            playerTwo.value?.bins?.replaceAll { 0 }
-//        }
     }
 }

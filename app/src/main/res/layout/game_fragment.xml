@@ -255,17 +255,19 @@
             app:layout_constraintEnd_toStartOf="@id/player1MovesTV"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@id/player1TimeTV"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/last_time" />
 
         <TextView
             android:id="@+id/player1MovesTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{@string/moves(viewModel.playerOne.turns)}"
+            android:text="@{@string/moves(viewModel.playerOne.moves)}"
             app:layout_constraintBottom_toTopOf="@id/player1GameTV"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/player1LastTimeTV"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/moves" />
 
         <TextView
             android:id="@+id/player2GameTV"
@@ -298,16 +300,27 @@
             app:layout_constraintEnd_toStartOf="@id/player2MovesTV"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@id/player2TimeTV"
-            app:layout_constraintTop_toBottomOf="@+id/player2GameTV" />
+            app:layout_constraintTop_toBottomOf="@+id/player2GameTV"
+            tools:text="@string/last_time" />
 
         <TextView
             android:id="@+id/player2MovesTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{@string/moves(viewModel.playerTwo.turns)}"
+            android:text="@{@string/moves(viewModel.playerTwo.moves)}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/player2LastTimeTV"
-            app:layout_constraintTop_toBottomOf="@id/player2GameTV" />
+            app:layout_constraintTop_toBottomOf="@id/player2GameTV"
+            tools:text="@string/moves" />
+
+        <TextView
+            android:id="@+id/infoTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/player2Bin3"
+            app:layout_constraintEnd_toStartOf="@+id/player2Well"
+            app:layout_constraintStart_toEndOf="@+id/player1Well"
+            app:layout_constraintTop_toBottomOf="@+id/player1Bin4" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

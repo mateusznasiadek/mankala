@@ -15,4 +15,7 @@
     <string name="total_time">Łączny czas: %1$s s</string>
     <string name="last_time">Czas ostatniej tury: %1$s s</string>
     <string name="moves">Ilość ruchów: %1$d</string>
+    <string name="chosen_bin">Wybrano dołek nr: %1$d</string>
+
+    <string name="first_random_move">Losowy pierwszy ruch</string>
 </resources>

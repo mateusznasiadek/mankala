@@ -32,5 +32,13 @@
             android:name="playerTwoMinMaxVal"
             android:defaultValue="1"
             app:argType="integer" />
+        <argument
+            android:name="playerOneFirstMoveRandom"
+            android:defaultValue="false"
+            app:argType="boolean" />
+        <argument
+            android:name="playerTwoFirstMoveRandom"
+            android:defaultValue="false"
+            app:argType="boolean" />
     </fragment>
 </navigation>

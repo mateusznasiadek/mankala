@@ -22,6 +22,9 @@ class MenuViewModel : ViewModel() {
     val playerTwoMinMaxValue: MutableLiveData<Int>
         get() = _playerTwoMinMaxValue
 
+    var playerOneFirstRandomMove : Boolean = false
+    var playerTwoFirstRandomMove : Boolean = false
+
     init {
         _playerOneType.value = "Człowiek"
         _playerTwoType.value = "Człowiek"
